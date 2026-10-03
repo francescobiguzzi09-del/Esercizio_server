@@ -13,9 +13,18 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/public/index.html'));
 });
 
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/public/about.html'));
+});
+
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/public/login.html'));
 });
+
+app.get('/weather', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/public/weather.html'));
+});
+
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body || {};
@@ -25,6 +34,12 @@ app.post('/login', (req, res) => {
     }
 
     return res.send('credenziali errate');
+});
+
+app.post('/weather', (req, res) => {
+    const city = res.body.city;
+    console.log(city);
+    res.send(`ai richiesto il meteo per: ${city}`);
 });
 
 app.listen(PORT, () => {
