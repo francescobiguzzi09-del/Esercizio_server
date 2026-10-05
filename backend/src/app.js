@@ -37,9 +37,9 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/weather', (req, res) => {
-    const city = res.body.city;
-    console.log(city);
-    res.send(`ai richiesto il meteo per: ${city}`);
+    const { city } = req.body || {};
+    const weatherData = "Meteo per la città di " + city + ": Soleggiato, 25°C";
+    res.send(weatherData);
 });
 
 app.listen(PORT, () => {
