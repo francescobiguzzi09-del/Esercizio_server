@@ -11,12 +11,18 @@ document.getElementById("weather-form").addEventListener("submit", async functio
         body: JSON.stringify({ city })
     });
 
-    const data = await res.text();
+    const data = await res.json();
 
     document.getElementById("weather-result").innerHTML = `
           <div class="weather-response-box">
-                <p>${data}</p>
-          </div>`;
+                <p>${data.city}</p>
+                <p>${data.description}</p>
+                <p>Temperatura: ${data.temp} °C</p>
+                <p>Umidità: ${data.humidity} %</p>
+                <img src="http://openweathermap.org/img/wn/${data.icon}.png" alt="Weather Icon">
+          </div>
+    `;
+
  
     document.getElementById("weather-result").style.display = "block";
 });
