@@ -1,4 +1,4 @@
-
+const fetch = require('node-fetch');
 
 exports.weatherController = async (req, res) => {
     const city = req.body.city;
