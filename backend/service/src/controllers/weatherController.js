@@ -1,9 +1,10 @@
 const fetch = require("node-fetch");
-const { getWeather } = require("../utils/apiClient");
-const { normalizeWeather } = require("../utils/normalizeWeather");
-const { validateCity } = require("../utils/validateCity");
-const { WEATHER_API_KEY } = require("../utils/conastants");
-const { logError } = require("../utils/logger");
+const paths = require('../../config/paths');
+const { getWeather } = require(paths.APICLIENT_UTILS);
+const { normalizeWeather } = require(paths.NORMALIZE_WEATHER_UTILS);
+const { validateCity } = require(paths.VALIDATE_CITY_UTILS);
+const { WEATHER_API_KEY } = require(paths.CONSTANTS_UTILS);
+const { logError } = require(paths.LOGGER_UTILS);
 
 exports.weatherController = async (req, res) => {
     const city = req.body.city;
