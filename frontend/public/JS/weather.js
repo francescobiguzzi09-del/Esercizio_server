@@ -19,7 +19,7 @@ document.getElementById("weather-form").addEventListener("submit", async functio
                 <p>${data.description}</p>
                 <p>Temperatura: ${data.temperature} °C</p>
                 <p>Umidità: ${data.humidity} %</p>
-                <img src="http://openweathermap.org/img/wn/${data.icon}.png" alt="Weather Icon">
+                <img src="http://openweathermap.org/img/wn/${data.icon}.png" alt="Weather Icon" class="weather-icon">
           </div>
     `;
 

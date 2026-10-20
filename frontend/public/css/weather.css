@@ -82,6 +82,13 @@ body {
 .weather-box button:active {
     transform: scale(0.98);
 }
+
+.weather-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
 #weather-result {
     display: none; /* nascosto all'inizio */
 }

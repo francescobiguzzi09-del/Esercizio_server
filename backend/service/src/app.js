@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const paths = require('../config/paths');
 require('dotenv').config();
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const pageRoutes = require(paths.ROUTES + '/pageroutes.js');
 
