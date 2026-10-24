@@ -9,6 +9,7 @@ const paths = require('../config/paths');
 const authRoute = require('./routes/auth');
 const pageRoute = require('./routes/pageroute');
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 app.use('/', authRoute); 

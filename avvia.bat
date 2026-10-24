@@ -1,18 +1,17 @@
 @echo off
+setlocal
 echo Avvio dei server...
 
-:: 1. Avvio app.js (della cartella service)
-start "Service" cmd /k "cd /d C:\Users\francesco.biguzzi\Esercizio_server\service" && node src/app.js"
-
-:: Attesa di 2 secondi per consentire l'avvio ordinato
-timeout /t 2 /nobreak >nul
-
-:: 2. Avvio server.js (di AUTHserver/src)
-start "AUTH Server" cmd /k "cd /d C:\Users\francesco.biguzzi\Esercizio_server\AUTHserver\src" && node server.js"
+:: Avvia ogni server dalla cartella del relativo progetto.
+start "Service" /D "%~dp0backend\service" cmd /k "node src\app.js"
 
 timeout /t 2 /nobreak >nul
 
-:: 3. Avvio gateway.js (di gateway/src)
-start "Gateway" cmd /k "cd /d C:\Users\francesco.biguzzi\Esercizio_server\gateway\src" && node gateway.js"
+start "AUTH Server" /D "%~dp0backend\AUTHserver" cmd /k "node src\server.js"
 
-echo Tutti i tre terminali sono stati avviati!
+timeout /t 2 /nobreak >nul
+
+start "Gateway" /D "%~dp0backend\gateway" cmd /k "node src\gateway.js"
+
+echo Le finestre dei tre server sono state aperte.
+endlocal
