@@ -11,9 +11,6 @@ router.get('/about', (req, res) => {
     res.sendFile(path.join(paths.PUBLIC, 'about.html'));
 });
 
-router.get('/login', (req, res) => {
-    res.sendFile(path.join(paths.PUBLIC, 'login.html'));
-});
 
 router.get('/weather', (req, res) => {
     res.sendFile(path.join(paths.PUBLIC, 'weather.html'));

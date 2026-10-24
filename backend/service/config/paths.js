@@ -13,7 +13,6 @@ module.exports = {
   // Controllers
   CONTROLLERS: path.join(ROOT, "src", "controllers"),
   WEATHER_CONTROLLER: path.join(ROOT, "src","controllers", "weatherController.js"),
-  AUTH_CONTROLLER: path.join(ROOT, "src","controllers", "authController.js"),
   //UTILS
   APICLIENT_UTILS: path.join(ROOT, "src", "utils", "apiClient.js"),
   LOGGER_UTILS: path.join(ROOT, "src", "utils", "logger.js"),

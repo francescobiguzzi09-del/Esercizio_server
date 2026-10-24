@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(paths.PUBLIC));
 
 app.use('/', pageRoutes);
-app.use('/', require(paths.ROUTES + '/auth.js'));
 app.use('/', require(paths.ROUTES + '/weather.js'));
 app.listen(PORT, () => {
     console.log(`Server avviato su http://localhost:${PORT}`);
