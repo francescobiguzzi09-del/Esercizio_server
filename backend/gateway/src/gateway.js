@@ -3,6 +3,17 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const config = require("../config/env.js");
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/v1/wanted/", createProxyMiddleware({
+    target: config.FBI_SERVER_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        "^/api/v1/wanted": ""
+    }
+}));
+
 
 app.use("/api/v1/auth/", createProxyMiddleware({
     target: config.AUTH_SERVER_URL,
@@ -14,7 +25,7 @@ app.use("/api/v1/auth/", createProxyMiddleware({
 
 
 
-app.use("/api/v1", createProxyMiddleware({
+app.use("/api/v1/", createProxyMiddleware({
     target: config.SERVER_URL,
     changeOrigin: true,
     pathRewrite: {
