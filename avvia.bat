@@ -3,7 +3,7 @@ setlocal
 echo Avvio dei server...
 echo Installazione dipendenze in corso...
 
-start "FBI Service" /D "%~dp0backend\fbiService" cmd /k "python server.py"
+start "FBI Service" /D "%~dp0backend\fbiService" cmd /k "py server.py"
 
 :: Installa le dipendenze e poi avvia ogni server dalla cartella del relativo progetto.
 start "Service" /D "%~dp0backend\service" cmd /k "npm install && node src\app.js"
