@@ -4,7 +4,6 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 const app = express();
 const config = require('../config/env');
-dotenv.config();
 const paths = require('../config/paths');
 const authRoute = require('./routes/auth');
 const pageRoute = require('./routes/pageroute');
