@@ -40,6 +40,14 @@
     color: #005fcc;
 }
 
+.nav-welcome {
+    color: #0f172a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
 
 /* ===== MOBILE ===== */
 @media (max-width: 600px) {
@@ -49,9 +57,14 @@
         padding: 20px;
     }
 
+    .nav-brand {
+        justify-content: center;
+    }
+
     .nav-links {
         flex-direction: column;
         gap: 12px;
         text-align: center;
+        margin-left: 0;
     }
 }

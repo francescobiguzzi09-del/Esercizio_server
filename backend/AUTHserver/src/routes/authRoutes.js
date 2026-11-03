@@ -16,15 +16,10 @@ router.get(
     failureRedirect: "/login",
   }),
   (req, res) => {
-
-    console.log(req.user);
-
-    //res.send("Login Google completato");
-    res.redirect("http://localhost:4000/api/v1/");
+    const name = req.user?.displayName || req.user?.name || "utente";
+    const redirectUrl = "http://localhost:4000/api/v1/?googleuser=" + encodeURIComponent(name);
+    return res.redirect(redirectUrl);
   }
 );
 
-router.get("/logout", (req, res) => {
-  req.logout((err => (err ? nex)  
-});
 module.exports = router;

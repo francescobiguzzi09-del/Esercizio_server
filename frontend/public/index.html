@@ -15,7 +15,16 @@
     <script>
         fetch("components/navbar.html")
             .then(res => res.text())
-            .then(html => document.getElementById("navbar").innerHTML = html);
+            .then(html => {
+                document.getElementById("navbar").innerHTML = html;
+
+                const name = new URLSearchParams(window.location.search).get("googleuser");
+                const welcome = document.getElementById("nav-welcome");
+
+                if (welcome && name) {
+                    welcome.textContent = "Benvenuto, " + decodeURIComponent(name);
+                }
+            });
     </script>
 
 
