@@ -6,6 +6,7 @@ router.get(
   "/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
+    prompt: "select_account",
   })
 );
 
@@ -19,7 +20,11 @@ router.get(
     console.log(req.user);
 
     //res.send("Login Google completato");
-    res.json(req.user);
+    res.redirect("http://localhost:4000/api/v1/");
   }
 );
+
+router.get("/logout", (req, res) => {
+  req.logout((err => (err ? nex)  
+});
 module.exports = router;
