@@ -10,23 +10,13 @@
 </head>
 
 <body>
+    <!-- NAVBAR -->
     <div id="navbar"></div>
-
     <script>
         fetch("components/navbar.html")
             .then(res => res.text())
-            .then(html => {
-                document.getElementById("navbar").innerHTML = html;
-
-                const name = new URLSearchParams(window.location.search).get("googleuser");
-                const welcome = document.getElementById("nav-welcome");
-
-                if (welcome && name) {
-                    welcome.textContent = "Benvenuto, " + decodeURIComponent(name);
-                }
-            });
+            .then(html => document.getElementById("navbar").innerHTML = html);
     </script>
-
 
     <!-- HERO SECTION -->
     <section class="hero">
@@ -36,13 +26,11 @@
 
     <!-- FOOTER -->
     <div id="footer"></div>
-
     <script>
         fetch("components/footer.html")
             .then(res => res.text())
             .then(html => document.getElementById("footer").innerHTML = html);
     </script>
-
 </body>
 
 </html>

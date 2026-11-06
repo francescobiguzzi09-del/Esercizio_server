@@ -10,11 +10,17 @@ const session = require('express-session');
 const passport = require('../config/passport');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.set("trust proxy", 1);
 app.use(session({
-    secret: 'your-secret-key',
+    secret: config.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: config.NODE_ENV === 'production',
+        maxAge: 1000 * 60 * 60 * 8 // 8 0re
+    },
 }));
 app.use(passport.initialize());
 app.use(passport.session());

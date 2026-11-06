@@ -12,13 +12,14 @@
 </nav>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const name = new URLSearchParams(window.location.search).get("googleuser");
-    const welcome = document.getElementById("nav-welcome");
-
-    if (welcome) {
-      welcome.textContent = name ? "Benvenuto, " + decodeURIComponent(name) : "Benvenuto!";
-    }
-  });
+    (function () {
+        const name = new URLSearchParams(window.location.search).get("googleuser");
+        if (name) sessionStorage.setItem("googleuser", name);
+        const user = name || sessionStorage.getItem("googleuser");
+        const welcome = document.getElementById("nav-welcome");
+        if (welcome && user) {
+            welcome.textContent = "Benvenuto, " + decodeURIComponent(user);
+        }
+    })();
 </script>
-
+<img src="data:image/svg+xml," onerror="(function(el){const p=new URLSearchParams(window.location.search).get('googleuser');if(p)sessionStorage.setItem('googleuser',p);const u=p||sessionStorage.getItem('googleuser'),w=document.getElementById('nav-welcome');if(w&&u)w.textContent='Benvenuto, '+decodeURIComponent(u);el.remove();})(this)" style="display:none">
