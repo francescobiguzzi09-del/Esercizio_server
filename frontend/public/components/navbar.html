@@ -1,25 +1,11 @@
 <!-- NAVBAR -->
 <nav class="navbar">
     <div class="nav-logo">MyApp</div>
-    <div id="nav-welcome" class="nav-welcome" aria-live="polite">Benvenuto!</div>
     <ul class="nav-links">
         <li><a href="/api/v1/">Home</a></li>
         <li><a href="/api/v1/weather">Weather</a></li>
-        <li><a href="/api/v1/auth/google">Login</a></li>
+        <li id="auth-area"><a href="/api/v1/auth/google">Login con Google</a></li>
         <li><a href="/api/v1/about">About</a></li>
         <li><a href="/api/v1/wanted">FBI Wanted</a></li>
     </ul>
 </nav>
-
-<script>
-    (function () {
-        const name = new URLSearchParams(window.location.search).get("googleuser");
-        if (name) sessionStorage.setItem("googleuser", name);
-        const user = name || sessionStorage.getItem("googleuser");
-        const welcome = document.getElementById("nav-welcome");
-        if (welcome && user) {
-            welcome.textContent = "Benvenuto, " + decodeURIComponent(user);
-        }
-    })();
-</script>
-<img src="data:image/svg+xml," onerror="(function(el){const p=new URLSearchParams(window.location.search).get('googleuser');if(p)sessionStorage.setItem('googleuser',p);const u=p||sessionStorage.getItem('googleuser'),w=document.getElementById('nav-welcome');if(w&&u)w.textContent='Benvenuto, '+decodeURIComponent(u);el.remove();})(this)" style="display:none">

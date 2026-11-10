@@ -2,19 +2,28 @@ const express = require('express');
 const router = express.Router();
 const passport = require('../../config/passport');
 const config = require('../../config/env');
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email'],
-  prompt: 'select_account'
-}));
-
-router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: config.FRONTEND_URL }),
-  (req, res) => {
-    const name = req.user?.displayName || req.user?.name || 'Utente';
-    res.redirect(config.FRONTEND_URL + `?name=${encodeURIComponent(name)}`);
-  }
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    prompt: "select_account",
+  })
 );
 
+// Google rimanda qui. Se il login riesce NON restituiamo il JSON di Google:
+// la sessione contiene già l'utente, quindi riportiamo il browser sul sito.
+// Sarà la navbar a chiedere /me per sapere chi è loggato.
+router.get("/google/callback",
+  passport.authenticate("google", {
+    //failureRedirect: "/login",
+    failureRedirect: `${config.FRONTEND_URL}`,
+  }),
+  (req, res) => {
+    //console.log(req.user);
+    //res.json(req.user);
+    res.redirect(config.FRONTEND_URL);
+  }
+);
 router.get('/me', (req, res) => {
   res.set("Cache-Control", "no-store");
   if(!req.isAuthenticated()) {

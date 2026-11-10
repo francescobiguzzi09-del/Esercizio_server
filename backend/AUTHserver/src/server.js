@@ -8,8 +8,8 @@ const paths = require('../config/paths');
 const googleAuthRoutes = require(paths.ROUTES + '/authRoutes');
 const session = require('express-session');
 const passport = require('../config/passport');
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set("trust proxy", 1);
 app.use(session({
     secret: config.SESSION_SECRET,

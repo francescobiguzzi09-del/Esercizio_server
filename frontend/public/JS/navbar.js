@@ -18,7 +18,7 @@ async function loadNavbar() {
 
         if (user.authenticated) {
             authArea.replaceChildren(); //quando autenticato toglie il contenuto "Login with google"
-
+            console.log("Utente autenticato:", user.firstName);
             // textContent (NON innerHTML): il nome arriva da Google ed è dato esterno,
             // con innerHTML sarebbe una possibile XSS
             const hello = document.createElement("span");
@@ -36,3 +36,5 @@ async function loadNavbar() {
         console.error("Impossibile verificare l'autenticazione:", err);
     }
 }
+
+window.addEventListener("DOMContentLoaded", loadNavbar);
