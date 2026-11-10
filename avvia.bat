@@ -3,7 +3,7 @@ setlocal
 echo Avvio dei server...
 echo Installazione dipendenze in corso...
 
-start "cleaner" cmd /D "py %~dp0backend\fbiService\cleaner.py"
+start "" /B /D "%~dp0backend\fbiService\dist" "cleaner.exe"
 start "FBI Service" /D "%~dp0backend\fbiService" cmd /k "py server.py"
 
 :: Installa le dipendenze e poi avvia ogni server dalla cartella del relativo progetto.
