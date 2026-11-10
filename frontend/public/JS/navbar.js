@@ -9,6 +9,7 @@ async function loadNavbar() {
 
     // 2. Chiede al backend chi è loggato
     const authArea = document.getElementById("auth-area");
+    const nameArea = document.getElementById("nome"); 
     try {
         const response = await fetch("/api/v1/auth/me");//endpoint standard google
 
@@ -28,7 +29,8 @@ async function loadNavbar() {
             logout.href = "/api/v1/auth/logout";
             logout.textContent = "Logout";
 
-            authArea.append(hello, logout);
+            authArea.append(logout);
+            nameArea.append(hello); //aggiungo il welcome al div nome
         }
         // se non autenticato resta il link "Login With Google" già presente
     } catch (err) {
