@@ -11,6 +11,10 @@ start "Service" /D "%~dp0backend\service" cmd /k "npm install && node src\app.js
 
 timeout /t 2 /nobreak >nul
 
+start "prova" /D "%~dp0backend\DemoService" cmd /k "npm install && node src\server.js"
+
+timeout /t 2 /nobreak >nul
+
 start "AUTH Server" /D "%~dp0backend\AUTHserver" cmd /k "npm install && node src\server.js"
 
 timeout /t 2 /nobreak >nul
