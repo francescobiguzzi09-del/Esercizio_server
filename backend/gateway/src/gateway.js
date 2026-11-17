@@ -4,6 +4,14 @@ const config = require("../config/env.js");
 
 const app = express();
 
+app.use("/api/v1/data", createProxyMiddleware({
+    target: config.DATA_SERVER_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        "^/api/v1/data": ""
+    }
+}));
+
 app.use("/api/v1/demo", createProxyMiddleware({
     target: config.DEMO_SERVICE_URL,
     changeOrigin: true,
