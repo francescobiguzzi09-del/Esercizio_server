@@ -1,16 +1,43 @@
-const { connectToMongoDB, disconnectFromMongoDB } = require('../config/connection');
-const {logger} = require('../config/logger');
+const { connectToMongoDB, disconnectFromMongoDB } = require('../../config/connection');
+const { logger } = require('../utils/logger');
+const { validateCollection, validateUser, validateBody } = require('../utils/validators');
+const { buildDocument } = require('../utils/sanitize');
+
 exports.saveData = async (req, res) => {
+    let client;
+
     try {
-        const client = await connectToMongoDB();
+        // 1. Validazione dei parametri tramite utils
+        const collectionName = validateCollection(req.params.collection);
+        const userObjectId = validateUser(req.user);
+        const validBody = validateBody(req.body);
+
+        // 2. Preparazione del documento finale
+        const documentToSave = buildDocument(validBody, userObjectId);
+
+        // 3. Salvataggio su MongoDB Atlas
+        client = await connectToMongoDB();
         const db = client.db('mydatabase');
-        const collection = db.collection('mycollection');
-        const result = await collection.insertOne(req.body);
-        logger(`Data saved with ID: ${result.insertedId}`);
+        const collection = db.collection(collectionName);
+
+        const result = await collection.insertOne(documentToSave);
+        logger(`Data saved in ${collectionName} with ID: ${result.insertedId}`);
+
+        return res.status(201).json({
+            _id: result.insertedId,
+            ...documentToSave
+        });
+
     } catch (error) {
+        const statusCode = error.statusCode || 500;
         logger(`Error occurred while saving data: ${error.message}`);
+        
+        return res.status(statusCode).json({
+            error: statusCode === 500 ? 'Errore interno del server' : error.message
+        });
     } finally {
-        await disconnectFromMongoDB();
+        if (client) {
+            await disconnectFromMongoDB();
+        }
     }
-    
 };
