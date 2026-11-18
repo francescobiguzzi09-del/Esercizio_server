@@ -5,7 +5,7 @@ const paths = require('../config/paths');
 const app = express();
 const env = require('../config/env');
 const PORT = env.PORT || 3003;
-const { provaRoute } = require("../src/routes/provaRoute");
+const provaRoute = require("./routes/provaRoute");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

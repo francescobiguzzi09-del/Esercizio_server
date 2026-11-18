@@ -44,7 +44,26 @@ function buildSearchQuery(rawFilters, userObjectId) {
     };
 }
 
+function buildGoogleUserUpdate(normalizedProfile) {
+    const now = new Date();
+
+    return {
+        $set: {
+            email: normalizedProfile.email,
+            firstName: normalizedProfile.firstName,
+            displayName: normalizedProfile.displayName,
+            avatar: normalizedProfile.avatar,
+            lastLogin: now,
+            updatedAt: now
+        },
+        $setOnInsert: {
+            googleId: normalizedProfile.googleId,
+            createdAt: now
+        }
+    };
+}
 module.exports = {
     buildDocument,
-    buildSearchQuery
+    buildSearchQuery,
+    buildGoogleUserUpdate
 };

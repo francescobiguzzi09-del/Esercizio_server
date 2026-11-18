@@ -14,11 +14,6 @@
 
     <!-- NAVBAR -->
     <div id="navbar"></div>
-    <!-- <script>
-        fetch("components/navbar.html")
-            .then(res => res.text())
-            .then(html => document.getElementById("navbar").innerHTML = html);
-    </script> -->
     <script src="JS/navbar.js"></script>
 
     <!-- WEATHER CONTENT -->
@@ -34,18 +29,19 @@
             </form>
         </div>
 
-
         <!-- RISULTATO METEO -->
         <div class="weather-box" id="weather-result"></div>
-        <!-- fine del dom-->
+
+        <!-- CRONOLOGIA RICERCHE (visibile solo se loggato) -->
+        <div class="weather-box" id="search-history-box" style="display: none;">
+            <h3>Le tue ricerche recenti</h3>
+            <ul id="search-history-list"></ul>
+        </div>
+
     </div>
+
     <!-- FOOTER -->
     <div id="footer"></div>
-    <!-- <script>
-        fetch("components/footer.html")
-            .then(res => res.text())
-            .then(html => document.getElementById("footer").innerHTML = html);
-    </script> -->
     <script src="JS/footer.js"></script>
     <script src="JS/weather.js"></script>
 </body>

@@ -15,6 +15,7 @@ passport.use(
           firstName: profile.name?.givenName,
           displayName: profile.displayName,
           email: profile.emails?.[0]?.value,
+          avatar: profile.photos?.[0]?.value,
         };
 
         return done(null, user);

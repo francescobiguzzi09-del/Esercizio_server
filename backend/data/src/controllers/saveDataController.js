@@ -7,15 +7,12 @@ exports.saveData = async (req, res) => {
     let client;
 
     try {
-        // 1. Validazione dei parametri tramite utils
         const collectionName = validateCollection(req.params.collection);
         const userObjectId = validateUser(req.user);
         const validBody = validateBody(req.body);
 
-        // 2. Preparazione del documento finale
         const documentToSave = buildDocument(validBody, userObjectId);
 
-        // 3. Salvataggio su MongoDB Atlas
         client = await connectToMongoDB();
         const db = client.db('mydatabase');
         const collection = db.collection(collectionName);
@@ -27,11 +24,10 @@ exports.saveData = async (req, res) => {
             _id: result.insertedId,
             ...documentToSave
         });
-
     } catch (error) {
         const statusCode = error.statusCode || 500;
         logger(`Error occurred while saving data: ${error.message}`);
-        
+
         return res.status(statusCode).json({
             error: statusCode === 500 ? 'Errore interno del server' : error.message
         });
